@@ -1,4 +1,4 @@
-package com.example.githubsearch.domain
+package com.example.githubsearch.domain.model
 
 
 data class GithubSearchResponse(

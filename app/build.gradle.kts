@@ -43,22 +43,6 @@ android {
 
 dependencies {
 
-//    implementation(libs.androidx.core.ktx)
-//    implementation(libs.androidx.lifecycle.runtime.ktx)
-//    implementation(libs.androidx.activity.compose)
-//    implementation(platform(libs.androidx.compose.bom))
-//    implementation(libs.androidx.ui)
-//    implementation(libs.androidx.ui.graphics)
-//    implementation(libs.androidx.ui.tooling.preview)
-//    implementation(libs.androidx.material3)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
-//    androidTestImplementation(libs.androidx.espresso.core)
-//    androidTestImplementation(platform(libs.androidx.compose.bom))
-//    androidTestImplementation(libs.androidx.ui.test.junit4)
-//    debugImplementation(libs.androidx.ui.tooling)
-//    debugImplementation(libs.androidx.ui.test.manifest)
-
     // Core
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -76,7 +60,6 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-//    implementation(libs.navigation.compose.jvmstubs)
     implementation(libs.material3.android)
     kapt(libs.hilt.compiler)
 
@@ -89,6 +72,7 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
+    kapt(libs.moshi.kotlin.codegen)
 
-
+    implementation(libs.coil.compose)
 }

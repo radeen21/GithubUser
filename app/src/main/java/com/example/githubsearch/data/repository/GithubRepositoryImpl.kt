@@ -1,7 +1,7 @@
 package com.example.githubsearch.data.repository
 
 import com.example.githubsearch.data.remote.GithubApiService
-import com.example.githubsearch.domain.GithubUser
+import com.example.githubsearch.domain.model.GithubUser
 import javax.inject.Inject
 
 interface GithubRepository {
