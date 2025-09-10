@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.githubsearch.presentation.Search.SearchScreen
 import com.example.githubsearch.presentation.Search.SearchViewModel
 import com.example.githubsearch.presentation.splash.SplashScreen
+import com.example.githubsearch.presentation.userdetail.UserDetailScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -34,10 +35,8 @@ fun NavGraph(navController: NavHostController) {
             )
         }
         composable(Screen.Detail.route) { backStackEntry ->
-            val itemId = backStackEntry.arguments?.getString("itemId")
-            itemId?.let {
-//                DetailScreen(navController, it)
-            }
+            val itemId = backStackEntry.arguments?.getString("itemId") ?: ""
+            UserDetailScreen(navController, username = itemId)
         }
     }
 }

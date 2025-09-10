@@ -1,8 +1,10 @@
 package com.example.githubsearch.presentation.userdetail
 
-import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.githubsearch.domain.model.GithubUserDetail
+import com.example.githubsearch.domain.usecase.GetUserDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,19 +13,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
-//    private val repo: GithubRepository
-): ViewModel() {
+    private val getUserDetailUseCase: GetUserDetailUseCase,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
-//    private val _user = MutableStateFlow<GithubUser?>(null)
-//    val user: StateFlow<GithubUser?> = _user
+    private val _userDetail = MutableStateFlow<GithubUserDetail?>(null)
+    val userDetail: StateFlow<GithubUserDetail?> = _userDetail
 
-    fun getUserDetail(login: String) {
-        viewModelScope.launch {
-            try {
-//                _user.value = repo.getUserDetail(login)
-            } catch (e: Exception) {
-                Log.e("UserDetailVM", e.message.toString())
+    init {
+        savedStateHandle.get<String>("itemId")?.let { username ->
+            viewModelScope.launch {
+                val detail = getUserDetailUseCase(username)
+                _userDetail.value = detail
             }
         }
     }
+
 }
+
