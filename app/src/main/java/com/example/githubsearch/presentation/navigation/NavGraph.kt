@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.githubsearch.presentation.Search.SearchScreen
 import com.example.githubsearch.presentation.Search.SearchViewModel
+import com.example.githubsearch.presentation.favorite.FavoriteScreen
 import com.example.githubsearch.presentation.splash.SplashScreen
 import com.example.githubsearch.presentation.userdetail.UserDetailScreen
 
@@ -16,6 +17,7 @@ sealed class Screen(val route: String) {
     object Detail : Screen("detail/{itemId}") {
         fun createRoute(itemId: String) = "detail/$itemId"
     }
+    object Favorite : Screen("favorite")
 }
 
 @Composable
@@ -37,6 +39,13 @@ fun NavGraph(navController: NavHostController) {
         composable(Screen.Detail.route) { backStackEntry ->
             val itemId = backStackEntry.arguments?.getString("itemId") ?: ""
             UserDetailScreen(navController, username = itemId)
+        }
+        composable(Screen.Favorite.route) {
+            FavoriteScreen(
+                onUserClick = { user ->
+                    navController.navigate(Screen.Detail.createRoute(user.login))
+                }
+            )
         }
     }
 }

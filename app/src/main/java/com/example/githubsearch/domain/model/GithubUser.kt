@@ -4,6 +4,12 @@ import com.squareup.moshi.Json
 
 data class GithubUser(
     val login: String,
-//    val avatarUrl: String?
-    @Json(name = "avatar_url") val avatarUrl: String?
+    @Json(name = "avatar_url") val avatarUrl: String?,
+    val id: Int
+)
+
+fun GithubUser.toDomainUser() = User(
+    login = login,
+    avatarUrl = avatarUrl?:"",
+    id = id
 )
